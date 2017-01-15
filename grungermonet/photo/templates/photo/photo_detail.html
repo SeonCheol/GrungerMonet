@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}GrungerMonet{% endblock %}
+{% block menu_list %}
+    <li class="menu_home"><a href="{% url 'home'%}">Home</a></li>
+	<li class="menu_member"><a href="{% url 'members:index'%}">Member</a></li>
+	<li class="menu_board"><a href = "{% url 'board:index' %}">Board</a></li>
+	<li class="active"><a href="{% url 'photo:index' %}">Photo</a></li>
+{% endblock %}
+{% block content %}
+	<div id="content">
+		<h2>{{ object.title }}</h2>
+		<table class="table">
+		<tr>
+		<td>
+			<a href="{{ object.image.url }}">
+			<img style="max-width: 100%" src="{{object.image.url }}" />
+			</a>a
+		</td>
+
+		<td>
+			<ul>
+				<li>Photo Description</li>
+				{% if object.description %}<p>{{ object.description|linebreaks }}</p>
+				{% else %}<p><blank></blank></p>{% endif %}
+				<li>Date UPloaded</li>
+				<p>{{ object.upload_date }}</p>
+				<li>Album Name</li>
+				<p><a href="{% url 'photo:album_detail' object.album.id %}">{{ object.album.name }}</a></p>
+			</ul>
+		</td>
+		</tr>
+		</table>
+	</div>
+{% endblock %}
+{% block footer %} {% endblock footer %}

@@ -1,0 +1,33 @@
+
+
+{% extends "base.html" %}
+
+{% block title %}Board{% endblock %}
+{% block menu_list %}
+	<li><a href="#">Home</a></li>
+    <li><a href="#">Member</a></li>
+    <li class="active"><a href="{% url 'board:index' %}">Board</a></li>
+{% endblock %}
+{% block content %}
+<form class="form-horizontal" action="" method="post"> 
+	{% csrf_token %}
+	{% for field in form %}
+	{{field}}
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for="id_{{ field.name}}">{{ field.label }}</label>
+		{% if  field.name  == 'content' %}
+		<input type="textarea" class="form-control" rows="10" name="{{ field.label }}" value="{{ object. }}">
+		{% else %}
+		<input type="text" class="form-control" name="{{ field.name }}" value="{{ field.value }}">\
+		 <p class="help-text">{{ field.help_text }} </p>
+		}
+		}
+		{% endif %}
+	</div>
+	{% endfor %}
+	<input class="btn btn-default" type="submit" value="Save"/>
+</form>
+{% endblock %}
+
+{% block footer %}
+{% endblock footer %}

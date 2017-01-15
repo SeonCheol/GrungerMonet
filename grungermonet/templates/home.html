@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}home.html{% endblock %}
+{% block menu_list %}
+	<li class="active"><a href="{% url 'home'%}">Home</a></li>
+	<li class="menu_member"><a href="{% url 'members:index'%}">Member</a></li>
+	<li class="menu_board"><a href = "{% url 'board:index' %}">Board</a></li>
+	<li class="menu_photo"><a href="{% url 'photo:index' %}">Photo</a></li>
+{% endblock %}
+
+{% block content %}
+This is Content Area
+{% endblock %}
+
+{% block footer %}
+This is FOOTER area.
+{% endblock footer %}

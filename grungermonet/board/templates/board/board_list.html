@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Board{% endblock %}
+{% block menu_list %}
+    <li class="menu_home"><a href="#">Home</a></li>
+	<li class="menu_member"><a href="{% url 'members:index'%}">Member</a></li>
+	<li class="active"><a href = "{% url 'board:index' %}">Board</a></li>
+	<li class="menu_photo"><a href="{% url 'photo:index' %}">Photo</a></li>
+{% endblock %}
+{% block content %}
+	<table class="table">
+		<tr>
+			<th>No.</th>
+			<th>제목</th>	
+			<th>작성자</th>
+			<th>날짜</th>
+		</tr>
+		{% for post in object_list %}
+		<tr>
+			<td>{{ post.id }}</td>
+			<td><a href="{{ post.get_absolute_url }}">{{ post }}</a></td>
+			<td>{{ post.writer }}</td>
+			<td>{{ post.date }}</td>
+		</tr>
+			<!--
+			<td><a href="{% url 'board:edit' post.id %}">edit</a></td>
+			<td><a href="{% url 'board:delete' post.id %}">delete</a></td>
+			-->
+		{% endfor %}
+	</table>
+	<a class="btn btn-default" href="{% url 'board:create' %}" role="button">글쓰기</a>
+{% endblock %}
+{% block footer %} {% endblock footer %}

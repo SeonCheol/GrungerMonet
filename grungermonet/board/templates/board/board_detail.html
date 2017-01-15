@@ -1,0 +1,18 @@
+
+
+{% extends "base.html" %}
+
+{% block title %}Board{% endblock %}
+{% block menu_list %}
+	<li><a href="#">Home</a></li>
+    <li><a href="#">Member</a></li>
+    <li class="active"><a href="#">Board</a></li>
+{% endblock %}
+{% block content %}
+	<h1 class="cover-heading">{{ object.title }}</h1>
+    	<p class="lead">{{ object.content }}</p>
+        <a href="{% url 'board:index' %}" class="btn btn-primary">목록</a>
+       	<a href="{% url 'board:edit' object.id %}" class="btn btn-default">수정하기</a>
+       	<a href="{% url 'board:delete' object.id %}" class="btn btn-default">삭제하기</a>
+{% endblock %}
+{% block footer %} {% endblock footer %}

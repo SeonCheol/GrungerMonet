@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}GrungerMonet{% endblock %}
+{% block menu_list %}
+    <li class="menu_home"><a href="{% url 'home'%}">Home</a></li>
+	<li class="menu_member"><a href="{% url 'members:index'%}">Member</a></li>
+	<li class="menu_board"><a href = "{% url 'board:index' %}">Board</a></li>
+	<li class="active"><a href="{% url 'photo:index' %}">Photo</a></li>
+{% endblock %}
+{% block content %}
+	<div id="content">
+		<h2 style="display:inline">{{ object.name }}</h2>
+		&emsp;<b><i>{{ object.description }}</i></b>
+		
+		<hr/>
+
+		<div class="album-detail">
+			{% for photo in item.photo_set.all %}
+			<div class="album-detail-photo">
+				<a href="{{ photo.get_absolute_url }}">
+				<img class="thumbnail" src="{{ photo.image.thumb_url }}"/>
+				</a>
+				<li>{{ photo.title }}</li>
+				<li>{{ photo.upload_date|date:"Y-m-d" }}</li>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
+{% block footer %} {% endblock footer %}
